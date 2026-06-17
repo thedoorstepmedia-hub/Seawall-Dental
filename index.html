@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seawall Dental | Vancouver Family & Cosmetic Dentistry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --stone: #F7F5F2; --fog: #EAE8E3; --driftwood: #B5A898;
+      --tide: #2C6E6A; --deep: #1A3C3A; --ink: #1C1C1C;
+      --mist: #6B7A79; --white: #FFFFFF; --online: #22c55e;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--stone); color: var(--ink); line-height: 1.6; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(247,245,242,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--fog); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--deep); letter-spacing: 0.02em; text-decoration: none; }
+    .nav-logo span { color: var(--tide); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--mist); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--tide); }
+    .nav-cta { background: var(--tide); color: white; padding: 10px 24px; border-radius: 2px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--deep); }
+
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 120px 48px 80px; gap: 60px; }
+    .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--tide); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--tide); }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 5.5vw, 76px); font-weight: 300; line-height: 1.1; color: var(--deep); margin-bottom: 28px; }
+    .hero h1 em { font-style: italic; color: var(--tide); }
+    .hero-sub { font-size: 16px; line-height: 1.7; color: var(--mist); max-width: 440px; margin-bottom: 44px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary { background: var(--tide); color: white; padding: 14px 32px; border-radius: 2px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--deep); }
+    .btn-secondary { background: transparent; color: var(--tide); padding: 14px 32px; border-radius: 2px; border: 1px solid var(--driftwood); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .btn-secondary:hover { border-color: var(--tide); }
+
+    .hero-visual { position: relative; height: 580px; }
+    .hero-card-main { position: absolute; inset: 0; background: var(--deep); border-radius: 4px; overflow: hidden; display: flex; align-items: flex-end; }
+    .hero-card-main::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,60,58,0.92) 0%, rgba(26,60,58,0.3) 55%, rgba(26,60,58,0.1) 100%); z-index: 1; }
+    .hero-card-bg { position: absolute; inset: 0; background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3Ehhy1xNiVdv0yglQJ2f6cyCQrL/hf_20260617_032007_cbe2a6b8-2876-4d77-a78d-ed3e45ac15bb.png'); background-size: cover; background-position: center; }
+    .hero-card-info { position: relative; z-index: 2; padding: 36px; width: 100%; margin-top: auto; }
+    .hero-card-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: white; margin-bottom: 8px; }
+    .hero-card-info p { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 20px; }
+    .hero-stats { display: flex; gap: 32px; }
+    .hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: white; line-height: 1; }
+    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+    .floating-badge { position: absolute; top: 32px; right: -20px; background: white; border-radius: 4px; padding: 14px 20px; box-shadow: 0 8px 40px rgba(0,0,0,0.12); display: flex; align-items: center; gap: 12px; }
+    .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--online); }
+    .badge-text { font-size: 12px; font-weight: 600; color: var(--ink); }
+    .badge-sub { font-size: 11px; color: var(--mist); }
+
+    .family-strip { width: 100%; height: 320px; overflow: hidden; position: relative; }
+    .family-strip img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+    .family-strip::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(26,60,58,0.45) 0%, transparent 50%); }
+
+    .trust-bar { background: var(--deep); padding: 20px 48px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .trust-item { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.75); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; }
+    .trust-item::before { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--tide); flex-shrink: 0; }
+
+    section { padding: 96px 48px; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tide); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--tide); }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 52px); font-weight: 300; color: var(--deep); line-height: 1.15; margin-bottom: 20px; }
+    .section-body { font-size: 16px; color: var(--mist); line-height: 1.75; max-width: 520px; }
+
+    #services { background: var(--white); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; border: 2px solid var(--fog); }
+    .service-card { padding: 40px 36px; background: white; transition: background 0.25s; border-top: 2px solid transparent; }
+    .service-card:hover { background: var(--stone); border-top-color: var(--tide); }
+    .service-num { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: var(--driftwood); margin-bottom: 20px; display: block; text-transform: uppercase; }
+    .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--deep); margin-bottom: 12px; }
+    .service-card p { font-size: 14px; color: var(--mist); line-height: 1.65; }
+    .service-card .service-price { margin-top: 16px; font-size: 13px; font-weight: 600; color: var(--tide); }
+
+    #about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-visual { position: relative; height: 500px; }
+    .about-img-primary { position: absolute; top: 0; left: 0; right: 60px; bottom: 60px; border-radius: 4px; overflow: hidden; background: var(--deep); }
+    .about-img-primary img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .about-img-secondary { position: absolute; bottom: 0; right: 0; width: 55%; height: 55%; background: var(--fog); border-radius: 4px; border: 4px solid var(--stone); display: flex; align-items: center; justify-content: center; }
+    .about-img-secondary-inner { text-align: center; padding: 20px; }
+    .about-img-secondary-inner .big { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--deep); }
+    .about-img-secondary-inner .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mist); }
+    .about-list { list-style: none; }
+    .about-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--ink); padding: 10px 0; border-bottom: 1px solid var(--fog); }
+    .about-list li::before { content: '✓'; color: var(--tide); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    #contact { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .hours-table { width: 100%; margin-top: 32px; }
+    .hours-table tr { border-bottom: 1px solid var(--fog); }
+    .hours-table td { padding: 14px 0; font-size: 15px; }
+    .hours-table td:first-child { color: var(--mist); font-weight: 500; }
+    .hours-table td:last-child { color: var(--ink); text-align: right; }
+    .contact-block { margin-top: 32px; }
+    .contact-row { display: flex; gap: 16px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--fog); }
+    .contact-icon { width: 20px; flex-shrink: 0; margin-top: 3px; color: var(--tide); }
+    .contact-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-row h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mist); margin-bottom: 4px; }
+    .contact-row p { font-size: 15px; color: var(--ink); line-height: 1.5; }
+
+    .emergency-banner { background: var(--deep); color: white; padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .emergency-banner h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; margin-bottom: 4px; }
+    .emergency-banner p { font-size: 14px; color: rgba(255,255,255,0.65); }
+    .btn-emergency { background: white; color: var(--deep); padding: 14px 32px; border-radius: 2px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+
+    footer { background: var(--ink); padding: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: white; }
+    .footer-logo span { color: var(--tide); }
+    footer p { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+    /* ══════════════════════════════════════
+       CHATBOT — UPGRADED v2
+    ══════════════════════════════════════ */
+    #chat-bubble { position: fixed; bottom: 28px; right: 28px; z-index: 999; }
+    #chat-toggle { width: 60px; height: 60px; border-radius: 50%; background: var(--tide); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 24px rgba(44,110,106,0.4); transition: transform 0.2s; position: relative; }
+    #chat-toggle:hover { transform: scale(1.05); }
+    #chat-toggle svg { width: 26px; height: 26px; fill: white; }
+    .chat-pulse { position: absolute; top: -2px; right: -2px; width: 16px; height: 16px; border-radius: 50%; background: var(--online); border: 2px solid white; }
+    .chat-pulse::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: var(--online); animation: pulse 2s ease-out infinite; opacity: 0.5; }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.5);opacity:0} }
+
+    #chat-window { display: none; position: absolute; bottom: 72px; right: 0; width: 360px; height: 580px; background: white; border-radius: 12px; box-shadow: 0 24px 80px rgba(0,0,0,0.18); overflow: hidden; flex-direction: column; }
+    #chat-window.open { display: flex; }
+
+    /* Emergency mode — red header */
+    #chat-window.emergency-mode .chat-header { background: #991b1b; }
+    /* Anxiety mode — softer purple tint */
+    #chat-window.anxiety-mode .chat-header { background: #3b3070; }
+
+    .chat-header { background: var(--deep); padding: 20px 20px 16px; display: flex; align-items: center; gap: 12px; transition: background 0.4s; }
+    .chat-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--fog); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; border: 2px solid rgba(255,255,255,0.15); }
+    .chat-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .chat-header-info h4 { font-size: 14px; font-weight: 600; color: white; }
+    .chat-header-info p { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; display: flex; align-items: center; gap: 5px; }
+    .chat-status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--online); display: inline-block; animation: statusPulse 2.5s ease-in-out infinite; }
+    @keyframes statusPulse { 0%,100%{opacity:1}50%{opacity:0.5} }
+
+    /* After-hours badge */
+    .afterhours-note { background: #fef3c7; border-bottom: 1px solid #fde68a; padding: 8px 16px; font-size: 12px; color: #92400e; display: flex; align-items: center; gap: 6px; }
+
+    .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--fog); border-radius: 2px; }
+
+    .msg { max-width: 84%; padding: 11px 15px; border-radius: 16px; font-size: 14px; line-height: 1.55; }
+    .msg.bot { background: var(--stone); color: var(--ink); border-bottom-left-radius: 4px; align-self: flex-start; }
+    .msg.user { background: var(--tide); color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
+    .msg.system-note { background: #dcfce7; color: #166534; border-radius: 8px; font-size: 12px; align-self: stretch; text-align: center; max-width: 100%; border: 1px solid #bbf7d0; padding: 8px 12px; }
+    .msg.emergency-msg { background: #fee2e2; color: #991b1b; border-left: 3px solid #ef4444; border-radius: 4px 16px 16px 4px; }
+    .msg.comfort-msg { background: #ede9fe; color: #3b3070; border-left: 3px solid #8b5cf6; border-radius: 4px 16px 16px 4px; }
+
+    .typing-indicator { display: flex; gap: 4px; padding: 14px 18px; background: var(--stone); border-radius: 16px 16px 16px 4px; align-self: flex-start; width: fit-content; }
+    .typing-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--driftwood); animation: typing 1.2s ease-in-out infinite; }
+    .typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
+    @keyframes typing{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+    .quick-replies { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; padding: 0 2px; }
+    .quick-reply { padding: 7px 12px; border-radius: 2px; background: white; border: 1px solid var(--fog); font-size: 12px; font-weight: 500; color: var(--tide); cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap; font-family: 'Inter', sans-serif; letter-spacing: 0.03em; }
+    .quick-reply:hover { background: var(--tide); color: white; border-color: var(--tide); }
+
+    .chat-input-area { padding: 12px 14px; border-top: 1px solid var(--fog); display: flex; gap: 10px; align-items: flex-end; }
+    #chat-input { flex: 1; border: 1px solid var(--fog); border-radius: 2px; padding: 10px 14px; font-size: 14px; font-family: 'Inter', sans-serif; resize: none; outline: none; line-height: 1.4; min-height: 40px; max-height: 100px; transition: border-color 0.15s; }
+    #chat-input:focus { border-color: var(--tide); }
+    #chat-send { width: 36px; height: 36px; border-radius: 2px; background: var(--tide); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s; }
+    #chat-send:hover { background: var(--deep); }
+    #chat-send svg { width: 16px; height: 16px; fill: white; }
+    .chat-disclaimer { text-align: center; font-size: 11px; color: var(--driftwood); padding: 0 16px 10px; }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; } .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; } .hero-visual { height: 320px; }
+      section { padding: 64px 24px; } .services-grid { grid-template-columns: 1fr; }
+      #about { grid-template-columns: 1fr; } .about-visual { height: 280px; }
+      #contact { grid-template-columns: 1fr; }
+      .trust-bar, .emergency-banner, footer { padding: 20px 24px; }
+      #chat-window { width: calc(100vw - 24px); right: -14px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#"><span>Seawall</span> Dental</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Book Appointment</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Vancouver Family Dentistry</div>
+    <h1>Caring for your smile, <em>every step</em> of the way</h1>
+    <p class="hero-sub">Gentle, comprehensive dental care for patients of all ages in the heart of Vancouver's Kitsilano neighbourhood. We believe dental visits should feel calm, not anxious.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book an Appointment</a>
+      <a href="#services" class="btn-secondary">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-main">
+      <div class="hero-card-bg"></div>
+      <div class="hero-card-info">
+        <h3>Trusted by Vancouver families since 2009</h3>
+        <p>Over 2,400 patients trust us with their smiles</p>
+        <div class="hero-stats">
+          <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Years serving</div></div>
+          <div><div class="hero-stat-num">2,400+</div><div class="hero-stat-label">Patients</div></div>
+          <div><div class="hero-stat-num">4.9★</div><div class="hero-stat-label">Google rating</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="floating-badge">
+      <div class="badge-dot"></div>
+      <div><div class="badge-text">Available Now</div><div class="badge-sub">Online booking open</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="family-strip">
+  <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ehhy1xNiVdv0yglQJ2f6cyCQrL/hf_20260617_032014_4c53623a-0aaa-4aa0-a9b7-008ea6ced094.png" alt="Vancouver families at Seawall Dental" />
+</div>
+
+<div class="trust-bar">
+  <div class="trust-item">General & Family Dentistry</div>
+  <div class="trust-item">Cosmetic Dentistry</div>
+  <div class="trust-item">Insurance Accepted</div>
+  <div class="trust-item">Same-Day Emergency Care</div>
+  <div class="trust-item">Free Parking On-Site</div>
+</div>
+
+<section id="services">
+  <div class="section-label">What We Offer</div>
+  <h2 class="section-title">Comprehensive dental care under one roof</h2>
+  <p class="section-body">From your child's first check-up to full smile restorations, we offer everything your family needs — all in our welcoming Kitsilano clinic.</p>
+  <div class="services-grid">
+    <div class="service-card"><span class="service-num">01</span><h3>General Check-ups & Cleanings</h3><p>Regular exams, professional cleans, x-rays and oral health screenings. We recommend every 6 months.</p><div class="service-price">From $180</div></div>
+    <div class="service-card"><span class="service-num">02</span><h3>Teeth Whitening</h3><p>Professional in-office whitening or take-home trays. Get up to 8 shades brighter, safely and effectively.</p><div class="service-price">From $350</div></div>
+    <div class="service-card"><span class="service-num">03</span><h3>Veneers & Cosmetic Work</h3><p>Porcelain veneers, bonding, and cosmetic reshaping to achieve the smile you've always wanted.</p><div class="service-price">From $1,200/tooth</div></div>
+    <div class="service-card"><span class="service-num">04</span><h3>Dental Implants</h3><p>Permanent tooth replacement that looks, feels, and functions like your natural teeth.</p><div class="service-price">From $3,500</div></div>
+    <div class="service-card"><span class="service-num">05</span><h3>Fillings & Restorations</h3><p>Tooth-coloured composite fillings, inlays, onlays, and crowns to restore function and appearance.</p><div class="service-price">From $200</div></div>
+    <div class="service-card"><span class="service-num">06</span><h3>Children's Dentistry</h3><p>Gentle, fun dental visits for kids from age 2. We build positive associations from day one.</p><div class="service-price">From $120</div></div>
+    <div class="service-card"><span class="service-num">07</span><h3>Invisalign & Orthodontics</h3><p>Discreet teeth straightening with Invisalign clear aligners for teens and adults. Free consultations.</p><div class="service-price">From $4,500</div></div>
+    <div class="service-card"><span class="service-num">08</span><h3>Night Guards & TMJ</h3><p>Custom night guards for grinding and treatment for jaw pain and TMJ disorders.</p><div class="service-price">From $450</div></div>
+    <div class="service-card"><span class="service-num">09</span><h3>Emergency Dental</h3><p>Tooth pain, chipped teeth, lost fillings — we offer same-day emergency appointments whenever possible.</p><div class="service-price">Call us directly</div></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-visual">
+    <div class="about-img-primary">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ehhy1xNiVdv0yglQJ2f6cyCQrL/hf_20260617_032010_e5659889-c311-4b5b-9bbc-cfdde93fa2a9.png" alt="Dr. Sarah Chen, DDS — Seawall Dental" />
+    </div>
+    <div class="about-img-secondary"><div class="about-img-secondary-inner"><div class="big">2009</div><div class="label">Est. Kitsilano, Vancouver</div></div></div>
+  </div>
+  <div class="about-content">
+    <div class="section-label">About Us</div>
+    <h2 class="section-title">A practice built on comfort and care</h2>
+    <p class="section-body">We know that many people feel anxious about dental visits. At Seawall Dental, we've built everything with nervous patients in mind — from our calm booking process to our sun-lit treatment rooms.</p>
+    <ul class="about-list" style="margin-top:28px;">
+      <li>Nitrous oxide sedation available for anxious patients</li>
+      <li>No judgement — we welcome patients who haven't visited in years</li>
+      <li>Same-day emergency appointments whenever possible</li>
+      <li>Dr. Sarah Chen, DDS — 15+ years in family & cosmetic dentistry</li>
+      <li>Dr. Marcus Reid, DDS — specialist in implants & oral surgery</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact">
+  <div>
+    <div class="section-label">Hours</div>
+    <h2 class="section-title">When we're here for you</h2>
+    <table class="hours-table">
+      <tr><td>Monday</td><td>8:00am – 5:00pm</td></tr>
+      <tr><td>Tuesday</td><td>8:00am – 7:00pm</td></tr>
+      <tr><td>Wednesday</td><td>8:00am – 5:00pm</td></tr>
+      <tr><td>Thursday</td><td>8:00am – 7:00pm</td></tr>
+      <tr><td>Friday</td><td>8:00am – 4:30pm</td></tr>
+      <tr><td>Saturday</td><td>9:00am – 2:00pm</td></tr>
+      <tr><td>Sunday</td><td>Closed</td></tr>
+    </table>
+  </div>
+  <div>
+    <div class="section-label">Find Us</div>
+    <h2 class="section-title">Visit Seawall Dental</h2>
+    <div class="contact-block">
+      <div class="contact-row">
+        <span class="contact-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
+        <div><h4>Address</h4><p>2156 West 4th Avenue<br>Kitsilano, Vancouver, BC V6K 1N8</p></div>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span>
+        <div><h4>Phone</h4><p>(604) 555-0182</p></div>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+        <div><h4>Email</h4><p>hello@seawalldental.ca</p></div>
+      </div>
+      <div class="contact-row">
+        <span class="contact-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></span>
+        <div><h4>Parking</h4><p>Free dedicated parking behind our building — enter from Arbutus Street.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="emergency-banner">
+  <div><h3>Dental Emergency?</h3><p>Severe toothache, knocked-out tooth, broken crown — we offer same-day emergency appointments.</p></div>
+  <a class="btn-emergency" href="tel:6045550182">Call Now: (604) 555-0182</a>
+</div>
+
+<footer>
+  <div class="footer-logo"><span>Seawall</span> Dental</div>
+  <p>© 2025 Seawall Dental. 2156 West 4th Avenue, Kitsilano, Vancouver, BC.</p>
+  <p>A demo by <strong>The Doorstep Media</strong></p>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     CHATBOT v2 — DENTAL INTELLIGENCE ENGINE
+     Built by The Doorstep Media
+═══════════════════════════════════════════ -->
+<div id="chat-bubble">
+  <div id="chat-window">
+    <div class="chat-header">
+      <div class="chat-avatar">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ehhy1xNiVdv0yglQJ2f6cyCQrL/hf_20260617_061630_9ffea4d3-b50b-49e4-a212-4a1489d103a8.png" alt="Aria — Seawall Dental" />
+      </div>
+      <div class="chat-header-info">
+        <h4 id="chat-header-name">Seawall Dental Assistant</h4>
+        <p><span class="chat-status-dot"></span> <span id="chat-status-text">Online now · replies instantly</span></p>
+      </div>
+    </div>
+
+    <!-- After-hours notice — shown dynamically -->
+    <div class="afterhours-note" id="afterhours-note" style="display:none;">
+      Outside office hours — we'll call you back first thing tomorrow
+    </div>
+
+    <div class="chat-messages" id="chat-messages"></div>
+
+    <div class="chat-input-area">
+      <textarea id="chat-input" rows="1" placeholder="Type your question…" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button id="chat-send" onclick="handleSend()">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+      </button>
+    </div>
+    <div class="chat-disclaimer">AI assistant · For urgent issues please call us</div>
+  </div>
+
+  <button id="chat-toggle" onclick="toggleChat()">
+    <svg class="icon-open" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24" style="display:none"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    <div class="chat-pulse"></div>
+  </button>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// SEAWALL DENTAL — CHATBOT v2
+// Dental Intelligence Engine by The Doorstep Media
+// ══════════════════════════════════════════════════════
+
+const PROXY_URL = 'https://doorstep-proxy-production.up.railway.app';
+const CLIENT_TOKEN = 'seawall-demo-token-ghi789';
+const CLINIC_PHONE = '(604) 555-0182';
+
+// ── Proxy wake-up ping — kills Railway cold-start lag ──
+fetch(PROXY_URL + '/chat', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json', 'x-api-secret': 'doorstep-secret-2025' },
+  body: JSON.stringify({ messages: [], systemPrompt: 'ping', websiteUrl: 'https://seawalldental.netlify.app' })
+}).catch(() => {});
+
+// ── SYSTEM PROMPT — dental-specific intelligence ───────
+const BASE_SYSTEM_PROMPT = `You are Aria, a warm and knowledgeable AI dental assistant for Seawall Dental — a family and cosmetic dental clinic at 2156 West 4th Avenue, Kitsilano, Vancouver, BC.
+
+Phone: (604) 555-0182 | Email: hello@seawalldental.ca
+Hours: Mon/Wed 8am–5pm, Tue/Thu 8am–7pm, Fri 8am–4:30pm, Sat 9am–2pm, Sun closed.
+Team: Dr. Sarah Chen (family & cosmetic, 15+ yrs), Dr. Marcus Reid (implants & oral surgery)
+Services: cleanings, fillings, crowns, implants, Invisalign, whitening, veneers, bonding, emergency, children's dentistry, night guards, TMJ treatment
+Insurance: Sun Life, Great-West Life, Manulife, Blue Cross, Chambers of Commerce, ClaimSecure, Green Shield, Johnston Group, Maximum Benefit, Pacific Blue Cross
+
+TONE: Warm, calm, never clinical. 2–3 sentences per reply. No lists unless the patient asks.
+
+EMERGENCY RULE: If the patient mentions severe pain, a knocked-out tooth, broken tooth, swelling, abscess, or bleeding that won't stop — your FIRST sentence must tell them to call (604) 555-0182 immediately. Mark your reply with [EMERGENCY] at the very start.
+
+ANXIETY RULE: If the patient says they are scared, nervous, anxious, hate the dentist, or haven't been in years — respond with extra warmth and reassurance first. Mark your reply with [COMFORT] at the very start.
+
+KIDS RULE: If the patient asks about bringing a child or mentions their child's dental needs — reassure the parent specifically. Mention that we see kids from age 2 and make it fun.
+
+INSURANCE RULE: If they name a specific insurance plan, confirm whether we accept it from the list above. Never say "we accept most plans" — be specific.
+
+AFTER-HOURS RULE: If it is currently outside clinic hours and the patient wants to book, acknowledge they can leave their details and the team will call first thing when the clinic opens.
+
+POST-TREATMENT RULE: If a patient asks about symptoms after dental work (pain after extraction, bleeding, swelling) — give calm reassurance about what is typically normal, remind them not to rely on an AI for medical advice, and offer to connect them with the clinic.
+
+COSMETIC CANDIDACY RULE: If someone asks "am I a good candidate for implants/Invisalign/veneers" — never say yes or no. Say that's something Dr. Chen or Dr. Reid assesses in person at a free consultation, and offer to get them booked.
+
+CANCELLATION RULE: If a patient mentions they need to cancel or reschedule — acknowledge it warmly, skip any guilt, and offer to capture their details so the team can find them a new time.
+
+LEAD CAPTURE: When the patient has shown genuine intent (wants to book, asks about cost, wants to cancel/reschedule, has described a problem and wants help) — end your reply with [COLLECT_LEAD] on its own line. Never output [COLLECT_LEAD] on the first message. Never ask for their name/phone yourself — the system handles that.`;
+
+// ── STATE ──────────────────────────────────────────────
+var chatHistory = [];
+var chatOpen = false;
+var greeted = false;
+var leadStep = null;
+var leadFired = false;
+var msgCount = 0;
+var leadData = { name: null, phone: null, reason: null };
+var currentMode = 'default'; // 'default' | 'emergency' | 'comfort'
+
+// ── AFTER-HOURS DETECTION ──────────────────────────────
+function isAfterHours() {
+  var now = new Date();
+  var day = now.getDay(); // 0=Sun,1=Mon...6=Sat
+  var h = now.getHours();
+  var m = now.getMinutes();
+  var mins = h * 60 + m;
+
+  if (day === 0) return true; // Sunday always closed
+  if (day === 6) return !(mins >= 540 && mins < 840); // Sat 9am–2pm
+  if (day === 5) return !(mins >= 480 && mins < 870); // Fri 8am–4:30pm
+  if (day === 2 || day === 4) return !(mins >= 480 && mins < 1140); // Tue/Thu 8am–7pm
+  return !(mins >= 480 && mins < 1020); // Mon/Wed 8am–5pm
+}
+
+// ── TOGGLE ─────────────────────────────────────────────
+function toggleChat() {
+  chatOpen = !chatOpen;
+  var win = document.getElementById('chat-window');
+  win.classList.toggle('open', chatOpen);
+  document.querySelector('.icon-open').style.display = chatOpen ? 'none' : 'block';
+  document.querySelector('.icon-close').style.display = chatOpen ? 'block' : 'none';
+  document.querySelector('.chat-pulse').style.display = chatOpen ? 'none' : 'block';
+
+  if (chatOpen && !greeted) {
+    greeted = true;
+
+    // Show after-hours banner if applicable
+    if (isAfterHours()) {
+      document.getElementById('afterhours-note').style.display = 'flex';
+    }
+
+    // Initial greeting with quick replies
+    setTimeout(function() {
+      showTyping(900, function() {
+        var greeting = "Good to have you here. I'm Aria, the Seawall Dental assistant — I can help with bookings, insurance questions, services, and more, any time of day.\n\nWhat can I help you with?";
+        addMsg('bot', greeting);
+        chatHistory.push({ role: 'assistant', content: greeting });
+        renderQuickReplies([
+          { label: 'Book an appointment', text: 'I want to book an appointment' },
+          { label: 'Check my insurance', text: 'Do you accept my insurance?' },
+          { label: 'Dental emergency', text: 'I have a dental emergency' },
+          { label: 'Bringing my child', text: 'I want to bring my child' },
+          { label: 'Nervous patient', text: "I'm really nervous about the dentist" },
+          { label: 'Cosmetic options', text: 'What cosmetic options do you offer?' }
+        ]);
+      });
+    }, 400);
+  }
+
+  if (chatOpen) setTimeout(function() { document.getElementById('chat-input').focus(); }, 150);
+}
+
+// ── RENDER QUICK REPLIES ───────────────────────────────
+function renderQuickReplies(items) {
+  var c = document.getElementById('chat-messages');
+  var wrap = document.createElement('div');
+  wrap.className = 'quick-replies';
+  items.forEach(function(item) {
+    var btn = document.createElement('button');
+    btn.className = 'quick-reply';
+    btn.textContent = item.label;
+    btn.onclick = function() {
+      wrap.remove();
+      document.getElementById('chat-input').value = item.text;
+      handleSend();
+    };
+    wrap.appendChild(btn);
+  });
+  c.appendChild(wrap);
+  c.scrollTop = c.scrollHeight;
+}
+
+// ── RENDER MESSAGE ─────────────────────────────────────
+function addMsg(role, text, extraClass) {
+  var c = document.getElementById('chat-messages');
+  var d = document.createElement('div');
+  d.className = 'msg ' + role + (extraClass ? ' ' + extraClass : '');
+  var formatted = text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '$1')
+    .replace(/\n/g, '<br>');
+  d.innerHTML = formatted;
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
+  return d;
+}
+
+// ── TYPING INDICATOR ───────────────────────────────────
+function showTyping(duration, cb) {
+  var c = document.getElementById('chat-messages');
+  var t = document.createElement('div');
+  t.className = 'typing-indicator'; t.id = 'typing-ind';
+  t.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  c.appendChild(t); c.scrollTop = c.scrollHeight;
+  setTimeout(function() {
+    var el = document.getElementById('typing-ind');
+    if (el) el.remove();
+    if (cb) cb();
+  }, duration || 1100);
+}
+
+function hideTyping() {
+  var el = document.getElementById('typing-ind');
+  if (el) el.remove();
+}
+
+// ── NAME EXTRACTION — blueprint v2 logic ──────────────
+function extractName(raw) {
+  var s = raw.trim();
+  var BAD = /^(yes|no|ok|okay|sure|wait|hold|later|hi|hey|hello|um|uh|hmm|not|nope|yep|nah|idk|good|fine|great|broken|help|thanks|sorry|its|it|this|that|my|the|tooth|teeth|pain|crown|filling|cavity|gum|gums|implant|invisalign|braces|whitening|cleaning|checkup|emergency|appointment|insurance|cancel|reschedule|morning|today|soon|now)$/i;
+  var WORD_BAD = /^(yes|no|ok|okay|sure|wait|hi|hey|hello|um|uh|not|nope|yep|nah|good|fine|thanks|sorry|its|it|this|that|my|the|tooth|teeth|pain|crown|filling|cavity|gum|gums|implant|appointment|insurance|cancel|morning|today|soon|now|dental|dentist|clinic|also|just|very|too|really|anxious|scared|nervous|hurt|hurts|sore|broken|cracked|chipped|lost|fell|fell out|bleeding|swollen|swelling)$/i;
+
+  var explicit = s.match(/(?:my name is|name is|call me|name's|my name's)\s+([a-zA-Z]{2,}(?:\s+[a-zA-Z]{2,}){0,2})/i);
+  if (explicit) {
+    var cwords = explicit[1].trim().split(/\s+/);
+    if (BAD.test(cwords[0])) return null;
+    return cwords.slice(0,3).map(function(w){ return w.charAt(0).toUpperCase()+w.slice(1).toLowerCase(); }).join(' ');
+  }
+
+  var imatch = s.match(/(?:i'm|i am)\s+([a-zA-Z]{2,})(?:\s+[a-zA-Z]{2,})?\b/i);
+  if (imatch) {
+    var candidate = imatch[1].trim();
+    if (!BAD.test(candidate) && !/^(not|just|still|here|trying|looking|going|doing|interested|available|ready|calling|wondering|asking|checking|nervous|scared|anxious)$/i.test(candidate)) {
+      return candidate.charAt(0).toUpperCase() + candidate.slice(1).toLowerCase();
+    }
+  }
+
+  var words = s.split(/\s+/);
+  if (words.length > 2) return null;
+  var name = words.map(function(w){ return w.charAt(0).toUpperCase()+w.slice(1).toLowerCase(); }).join(' ');
+  if (/[\d$?@'!.,]/.test(name) || s.length > 20) return null;
+  if (BAD.test(s.trim())) return null;
+  if (/^(its|it|this|that|my|the|not|so|but|and|or|if|when|just|also)\b/i.test(s)) return null;
+  for (var i = 0; i < words.length; i++) { if (WORD_BAD.test(words[i])) return null; }
+  return name;
+}
+
+// ── PHONE VALIDATION ───────────────────────────────────
+function hasPhone(t) { return t.replace(/\D/g, '').length >= 7; }
+
+// ── QUESTION DETECTION ─────────────────────────────────
+function isQ(t) {
+  var s = t.trim().toLowerCase();
+  return s.endsWith('?') || /^(what|how|when|where|why|who|can|do|is|are|will|should|could|would|does)\b/.test(s);
+}
+
+// ── AI CALL ────────────────────────────────────────────
+async function callAI() {
+  try {
+    var sp = 'Today is ' + new Date().toLocaleDateString('en-CA', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+      hour: '2-digit', minute: '2-digit', timeZoneName: 'short'
+    }) + '. ' + BASE_SYSTEM_PROMPT;
+    var r = await fetch(PROXY_URL + '/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-secret': 'doorstep-secret-2025' },
+      body: JSON.stringify({
+        messages: chatHistory,
+        systemPrompt: sp,
+        websiteUrl: 'https://seawalldental.netlify.app'
+      })
+    });
+    var d = await r.json();
+    return d.reply || 'Having a quick issue — please call us at ' + CLINIC_PHONE + ' for immediate help.';
+  } catch(e) {
+    return 'Connection issue. For urgent care please call ' + CLINIC_PHONE + ' directly.';
+  }
+}
+
+// ── SET CHAT MODE (emergency / comfort / default) ──────
+function setMode(mode) {
+  currentMode = mode;
+  var win = document.getElementById('chat-window');
+  win.classList.remove('emergency-mode', 'anxiety-mode');
+  if (mode === 'emergency') win.classList.add('emergency-mode');
+  if (mode === 'comfort') win.classList.add('anxiety-mode');
+}
+
+// ── LEAD BADGE (demo — no real email sent) ────────────
+function addBadge() {
+  var c = document.getElementById('chat-messages');
+  var d = document.createElement('div');
+  d.className = 'msg system-note';
+  d.innerHTML = '📋 <strong>Lead captured (demo)</strong> — ' + leadData.name + ' | ' + leadData.phone + ' | ' + leadData.reason;
+  c.appendChild(d); c.scrollTop = c.scrollHeight;
+  // In production: fetch(PROXY_URL + '/lead', ...) sends real email
+}
+
+// ── LEAD FLOW HANDLER ─────────────────────────────────
+async function handleLeadInput(text) {
+
+  // ── NAME STEP ──
+  if (leadStep === 'name') {
+    if (isQ(text)) {
+      // Mid-flow question — answer it, then re-ask
+      chatHistory.push({ role: 'user', content: text });
+      showTyping(1100, null);
+      var r = await callAI();
+      hideTyping();
+      addMsg('bot', r);
+      chatHistory.push({ role: 'assistant', content: r });
+      if (!/name|call you/i.test(r)) {
+        var reask = "Just your first name is fine — what should I call you?";
+        addMsg('bot', reask);
+        chatHistory.push({ role: 'assistant', content: reask });
+      }
+      return;
+    }
+    var name = extractName(text);
+    if (!name) {
+      var retry = "Sorry, I didn't quite catch your name! Just your first name works perfectly.";
+      addMsg('bot', retry);
+      chatHistory.push({ role: 'user', content: text });
+      chatHistory.push({ role: 'assistant', content: retry });
+      return;
+    }
+    leadData.name = name;
+    leadStep = 'phone';
+    var p = "Lovely to meet you, " + name + "! What's the best phone number for the team to reach you?";
+    addMsg('bot', p);
+    chatHistory.push({ role: 'user', content: text });
+    chatHistory.push({ role: 'assistant', content: p });
+    return;
+  }
+
+  // ── PHONE STEP ──
+  if (leadStep === 'phone') {
+    if (isQ(text) && !hasPhone(text)) {
+      chatHistory.push({ role: 'user', content: text });
+      showTyping(1100, null);
+      var r = await callAI();
+      hideTyping();
+      addMsg('bot', r);
+      chatHistory.push({ role: 'assistant', content: r });
+      if (!/number|phone|reach/i.test(r)) {
+        var reask = "Whenever you're ready — what's the best number to reach you, " + leadData.name + "?";
+        addMsg('bot', reask);
+        chatHistory.push({ role: 'assistant', content: reask });
+      }
+      return;
+    }
+    if (!hasPhone(text)) {
+      var retry = "I want to make sure the team can reach you — could you double-check that number? It needs at least 7 digits.";
+      addMsg('bot', retry);
+      chatHistory.push({ role: 'user', content: text });
+      chatHistory.push({ role: 'assistant', content: retry });
+      return;
+    }
+    var digits = text.replace(/\D/g, '');
+    leadData.phone = digits.length === 10
+      ? digits.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
+      : text.trim();
+    leadStep = 'reason';
+    var p = "Perfect! Last one — what's the main reason you're reaching out? Just a word or two is fine.";
+    addMsg('bot', p);
+    chatHistory.push({ role: 'user', content: text });
+    chatHistory.push({ role: 'assistant', content: p });
+    return;
+  }
+
+  // ── REASON STEP ──
+  if (leadStep === 'reason') {
+    var cleaned = text.trim().replace(/[^a-zA-Z0-9]/g, '');
+    if (cleaned.length < 2) {
+      var retry = "Just a word or two — what's the main reason for reaching out?";
+      addMsg('bot', retry);
+      chatHistory.push({ role: 'user', content: text });
+      chatHistory.push({ role: 'assistant', content: retry });
+      return;
+    }
+    leadData.reason = text.trim();
+    leadStep = null;
+    var afterHours = isAfterHours();
+    var confirm = afterHours
+      ? "Got it, " + leadData.name + "! We're currently outside office hours, so the team will call " + leadData.phone + " first thing when we open. For anything urgent in the meantime, call " + CLINIC_PHONE + " — we have an emergency line."
+      : "All set, " + leadData.name + "! The team will give you a call at " + leadData.phone + " shortly to get you booked in. For anything urgent, call " + CLINIC_PHONE + " directly.";
+    addMsg('bot', confirm);
+    chatHistory.push({ role: 'user', content: text });
+    chatHistory.push({ role: 'assistant', content: confirm });
+    addBadge();
+  }
+}
+
+// ── MAIN SEND HANDLER ─────────────────────────────────
+async function handleSend() {
+  var inp = document.getElementById('chat-input');
+  var text = inp.value.trim();
+  if (!text) return;
+  inp.value = ''; inp.style.height = 'auto';
+
+  addMsg('user', text);
+
+  if (leadStep) {
+    await handleLeadInput(text);
+    return;
+  }
+
+  msgCount++;
+  chatHistory.push({ role: 'user', content: text });
+  showTyping(1100, null);
+  var reply = await callAI();
+  hideTyping();
+
+  // ── Parse special mode markers ──
+  var extraClass = '';
+  if (reply.startsWith('[EMERGENCY]')) {
+    reply = reply.replace('[EMERGENCY]', '').trim();
+    setMode('emergency');
+    extraClass = 'emergency-msg';
+  } else if (reply.startsWith('[COMFORT]')) {
+    reply = reply.replace('[COMFORT]', '').trim();
+    setMode('comfort');
+    extraClass = 'comfort-msg';
+  }
+
+  // ── Lead capture trigger ──
+  if (!leadFired && msgCount >= 1 && reply.includes('[COLLECT_LEAD]')) {
+    leadFired = true;
+    reply = reply.replace(/\[COLLECT_LEAD\]/g, '').trim();
+    if (reply) {
+      addMsg('bot', reply, extraClass);
+      chatHistory.push({ role: 'assistant', content: reply });
+    }
+    leadStep = 'name';
+    var np = "To get you connected with the team — what's your name?";
+    addMsg('bot', np);
+    chatHistory.push({ role: 'assistant', content: np });
+  } else {
+    reply = reply.replace(/\[COLLECT_LEAD\]/g, '').trim();
+    addMsg('bot', reply, extraClass);
+    chatHistory.push({ role: 'assistant', content: reply });
+
+    // Smart contextual quick replies after certain intents
+    var lc = text.toLowerCase();
+    if (msgCount === 1) {
+      // Show contextual follow-up chips after first real response
+      if (/insurance|coverage|plan/i.test(lc)) {
+        renderQuickReplies([
+          { label: 'Book now', text: 'I want to book an appointment' },
+          { label: 'General pricing?', text: 'What are your general prices?' }
+        ]);
+      } else if (/cost|price|how much/i.test(lc)) {
+        renderQuickReplies([
+          { label: 'Book a consult', text: 'I want to book a consultation' },
+          { label: 'Insurance?', text: 'Do you accept my insurance?' }
+        ]);
+      } else if (/child|kid|son|daughter|toddler|baby/i.test(lc)) {
+        renderQuickReplies([
+          { label: 'Book for my child', text: 'I want to book for my child' },
+          { label: 'What age do you see?', text: 'What age do you see children from?' }
+        ]);
+      }
+    }
+  }
+}
+
+function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 100) + 'px'; }
+function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }
+</script>
+</body>
+</html>
